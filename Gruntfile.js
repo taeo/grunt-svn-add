@@ -1,8 +1,8 @@
 /*
- * grunt-svn-export
- * https://github.com/francisbyrne/grunt-svn-export
+ * grunt-svn-add
+ * https://github.com/colmmcbarron/grunt-svn-add
  *
- * Copyright (c) 2013 byrnify
+ * Copyright (c) 2014 Colm McBarron
  * Licensed under the MIT license.
  */
 
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    svn_export: {
+    svn_add: {
       default_options: {
         options: {
         },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'svn_export', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'svn_add', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

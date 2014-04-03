@@ -13,19 +13,18 @@ module.exports = function(grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('svn_add', 'Your task description goes here.', function() {
+  grunt.registerMultiTask('svn_add', 'Add files to svn working copy', function() {
     var exec = require('child_process').exec;
     var options = this.options({
       bin:        'svn',
-      repository: '',
-      output:     'src',
+      files:      '',
       execOpts:	  {}
     });
     grunt.verbose.writeflags(options, 'Options');
-    grunt.log.write('Exporting from ' + options.repository + '\n');
+    grunt.log.write('Adding files: ' + options.files + '\n');
 
     var done = this.async();
-    var command = [ options.bin, 'add', options.repository, options.output ].join(' ');
+    var command = [ options.bin, 'add', options.files].join(' ');
 
     exec(command, options.execOpts, function (error, stdout) {
       grunt.log.write(stdout);

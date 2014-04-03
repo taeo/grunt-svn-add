@@ -1,6 +1,6 @@
 {
   "name": "grunt-svn-add",
-  "description": "Add folder/file to svn via Grunt.",
+  "description": "Add folders/files to svn via Grunt.",
   "version": "0.0.1",
   "homepage": "https://github.com/colmmcbarron/grunt-svn-add",
   "author": {

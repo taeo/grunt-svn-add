@@ -8,13 +8,13 @@ This plugin requires Grunt `~0.4.1`
 If you haven't used [Grunt]. before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-svn-export --save-dev
+npm install grunt-svn-add --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-svn-export');
+grunt.loadNpmTasks('grunt-svn-add');
 ```
 
 ## The "svn_add" task
@@ -43,17 +43,12 @@ Default value: `'svn'`
 
 A string value that is used to specify the path to your svn executable.
 
-#### options.repository
+
+#### options.files
 Type: `String`
-Default value: `''`
+Default value: `'.'`
 
-A string value that is used to specify the repository path.
-
-#### options.output
-Type: `String`
-Default value: `'src'`
-
-A string value that is used to specify the output path of the export.
+A string value that is used to specify the files to be added to svn
 
 #### options.execOpts
 Type: `Object`
@@ -71,8 +66,8 @@ grunt.initConfig({
   svn_add: {
     dev: {
       options: {
-        repository: 'file:///some/repo/path'
         // Optional setting for exporting large repositories
+        files: 'folder_to_add'
         execOpts: {
           maxBuffer: 1000*1024
         }        
@@ -90,8 +85,7 @@ grunt.initConfig({
     dev: {
       options: {
         bin: '/usr/bin/svn',
-        repository: '<%= pkg.svn %>',
-        output: 'output/files'
+        files: 'folder_to_add'
       }
     }
   }
