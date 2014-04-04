@@ -1,7 +1,7 @@
 {
   "name": "grunt-svn-add",
   "description": "Grunt SVN Add plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/ColmMcBarron/grunt-svn-add",
   "author": {
     "name": "Colm McBarron",

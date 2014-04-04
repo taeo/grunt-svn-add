@@ -24,21 +24,16 @@ module.exports = function(grunt) {
 
     var done = this.async();
 
-    this.files.forEach(function(f) {
-        if (f.orig.dest === 'src') {
-          var files = f.orig.src;
-          files.forEach(function(ef) {
-            var command = [ options.bin, 'add', ef].join(' ');
-            grunt.log.write('SVN add: ' + ef + '\n');
-            exec(command, options.execOpts, function (error, stdout) {
-              grunt.log.write(stdout);
-              if (error !== null) {
-                grunt.log.error('\n#' + command + "\n" + error);
-              }
-              done(true);
-            });
-          });
+    options.src.forEach(function(f) {
+      var command = [ options.bin, 'add', f].join(' ');
+      grunt.log.write('SVN add: ' + f + '\n');
+      exec(command, options.execOpts, function (error, stdout) {
+        grunt.log.write(stdout);
+        if (error !== null) {
+          grunt.log.error('\n#' + command + "\n" + error);
         }
+        done(true);
+      });
     });
 
   });

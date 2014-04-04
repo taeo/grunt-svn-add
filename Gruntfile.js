@@ -32,15 +32,11 @@ module.exports = function(grunt) {
     svn_add: {
       default_options: {
         options: {
-        },
-        files: {
-          src: ['test/fixtures/testing']
+          src:['test/fixtures/testing']
         }
       },
       custom_options: {
         options: {
-        },
-        files: {
           src: ['test/fixtures/testing', 'test/fixtures/123']
         }
       },
