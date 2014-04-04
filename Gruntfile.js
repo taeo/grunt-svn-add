@@ -1,6 +1,6 @@
 /*
  * grunt-svn-add
- * https://github.com/colmmcbarron/grunt-svn-add
+ * https://github.com/ColmMcBarron/grunt-svn-add
  *
  * Copyright (c) 2014 Colm McBarron
  * Licensed under the MIT license.
@@ -34,17 +34,15 @@ module.exports = function(grunt) {
         options: {
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+          src: ['test/fixtures/testing']
+        }
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+          src: ['test/fixtures/testing', 'test/fixtures/123']
+        }
       },
     },
 

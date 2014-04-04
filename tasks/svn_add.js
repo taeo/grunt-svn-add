@@ -1,8 +1,8 @@
 /*
  * grunt-svn-add
- * https://github.com/colmmcbarron/grunt-svn-add
+ * https://github.com/ColmMcBarron/grunt-svn-add
  *
- * Copyright (c) 2013 Colm McBarron
+ * Copyright (c) 2014 Colm McBarron
  * Licensed under the MIT license.
  */
 
@@ -13,25 +13,34 @@ module.exports = function(grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('svn_add', 'Add files to svn working copy', function() {
+  grunt.registerMultiTask('svn_add', 'SVN add command in grunt', function() {
+    // Merge task-specific and/or target-specific options with these defaults.
+
     var exec = require('child_process').exec;
     var options = this.options({
-      bin:        'svn',
-      files:      '',
-      execOpts:	  {}
+      bin: 'svn',
+      execOpts: {}
     });
-    grunt.verbose.writeflags(options, 'Options');
-    grunt.log.write('Adding files: ' + options.files + '\n');
 
     var done = this.async();
-    var command = [ options.bin, 'add', options.files].join(' ');
 
-    exec(command, options.execOpts, function (error, stdout) {
-      grunt.log.write(stdout);
-      if (error !== null) {
-        grunt.log.error('\n#' + command + "\n" + error);
-      }
-      done(true);
+    this.files.forEach(function(f) {
+        if (f.orig.dest === 'src') {
+          var files = f.orig.src;
+          files.forEach(function(ef) {
+            var command = [ options.bin, 'add', ef].join(' ');
+            grunt.log.write('SVN add: ' + ef + '\n');
+            exec(command, options.execOpts, function (error, stdout) {
+              grunt.log.write(stdout);
+              if (error !== null) {
+                grunt.log.error('\n#' + command + "\n" + error);
+              }
+              done(true);
+            });
+          });
+        }
     });
+
   });
+
 };

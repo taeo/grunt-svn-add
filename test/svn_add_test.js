@@ -22,7 +22,7 @@ var grunt = require('grunt');
     test.ifError(value)
 */
 
-exports.svn_export = {
+exports.svn_add = {
   setUp: function(done) {
     // setup here if necessary
     done();

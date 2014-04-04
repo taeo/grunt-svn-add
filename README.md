@@ -1,11 +1,11 @@
 # grunt-svn-add
 
-> Add files/directories to SVN working copy via Grunt.
+> Grunt SVN Add plugin
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
+This plugin requires Grunt `~0.4.2`
 
-If you haven't used [Grunt]. before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-svn-add --save-dev
@@ -32,29 +32,22 @@ grunt.initConfig({
       // Target-specific file lists and/or options go here.
     },
   },
-})
+});
 ```
 
 ### Options
 
-#### options.bin
+#### options.separator
 Type: `String`
-Default value: `'svn'`
+Default value: `',  '`
 
-A string value that is used to specify the path to your svn executable.
+A string value that is used to do something with whatever.
 
-
-#### options.files
+#### options.punctuation
 Type: `String`
 Default value: `'.'`
 
-A string value that is used to specify the files to be added to svn
-
-#### options.execOpts
-Type: `Object`
-Default value: `{}`
-
-An object with exec configuration settings
+A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
@@ -64,39 +57,33 @@ In this example, the default options are used to do something with whatever. So 
 ```js
 grunt.initConfig({
   svn_add: {
-    dev: {
-      options: {
-        // Optional setting for exporting large repositories
-        files: 'folder_to_add'
-        execOpts: {
-          maxBuffer: 1000*1024
-        }        
-      }
-    }
-  }
-})
+    options: {},
+    files: {
+      'dest/default_options': ['src/testing', 'src/123'],
+    },
+  },
+});
 ```
 
 #### Custom Options
+In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
 
 ```js
 grunt.initConfig({
   svn_add: {
-    dev: {
-      options: {
-        bin: '/usr/bin/svn',
-        files: 'folder_to_add'
-      }
-    }
-  }
-})
+    options: {
+      separator: ': ',
+      punctuation: ' !!!',
+    },
+    files: {
+      'dest/default_options': ['src/testing', 'src/123'],
+    },
+  },
+});
 ```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Thanks
-Inspired by the [grunt-svn-export](https://github.com/francisbyrne/grunt-svn-export) plugin
 
 ## Release History
 _(Nothing yet)_
