@@ -37,6 +37,18 @@ grunt.initConfig({
 
 ### Options
 
+#### options.verbose
+Type: `Bool`
+Default value: `false`
+
+Outputs file paths being executed. ie. `SVN add: [filepath]`.
+
+#### options.displayErrors
+Type: `Bool`
+Default value: `false`
+
+Outputs any errors.
+
 #### options.separator
 Type: `String`
 Default value: `',  '`
