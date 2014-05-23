@@ -19,6 +19,8 @@ module.exports = function(grunt) {
     var exec = require('child_process').exec;
     var options = this.options({
       bin: 'svn',
+      verbose: false,
+      displayErrors: false,
       execOpts: {}
     });
 
@@ -26,10 +28,12 @@ module.exports = function(grunt) {
 
     options.src.forEach(function(f) {
       var command = [ options.bin, 'add', f].join(' ');
-      grunt.log.write('SVN add: ' + f + '\n');
+      if (options.verbose) {
+        grunt.log.write('SVN add: ' + f + '\n');
+      }
       exec(command, options.execOpts, function (error, stdout) {
         grunt.log.write(stdout);
-        if (error !== null) {
+        if (error !== null && options.displayErrors) {
           grunt.log.error('\n#' + command + "\n" + error);
         }
         done(true);
