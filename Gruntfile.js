@@ -20,7 +20,7 @@ module.exports = function(grunt) {
       ],
       options: {
         jshintrc: '.jshintrc',
-      },
+      }
     },
 
     // Before generating any new files, remove any previously-created files.
@@ -32,20 +32,28 @@ module.exports = function(grunt) {
     svn_add: {
       default_options: {
         options: {
-          src:['test/fixtures/testing']
+          verbose: true,
+          debug: true
+        },
+        files: { 
+          src: ['test/fixtures/testing']
         }
       },
       custom_options: {
         options: {
+          verbose: true,
+          debug: true
+        },
+        files: {
           src: ['test/fixtures/testing', 'test/fixtures/123']
         }
-      },
+      }
     },
 
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js'],
-    },
+    }
 
   });
 

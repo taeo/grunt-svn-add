@@ -20,20 +20,20 @@ module.exports = function(grunt) {
     var options = this.options({
       bin: 'svn',
       verbose: false,
-      displayErrors: false,
+      debug: false,
       execOpts: {}
     });
 
     var done = this.async();
 
-    options.src.forEach(function(f) {
+    this.files.forEach(function(f) {
       var command = [ options.bin, 'add', f].join(' ');
       if (options.verbose) {
         grunt.log.write('SVN add: ' + f + '\n');
       }
       exec(command, options.execOpts, function (error, stdout) {
         grunt.log.write(stdout);
-        if (error !== null && options.displayErrors) {
+        if (error !== null && options.debug) {
           grunt.log.error('\n#' + command + "\n" + error);
         }
         done(true);
