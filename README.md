@@ -28,7 +28,8 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     },
-    files: [] // Target-specific file lists go here.
+    files: {
+    	src: []  // Target-specific file lists go here.
     }
   }
 });
@@ -62,7 +63,9 @@ grunt.initConfig({
       debug: false,
       execOpts: {}    
     },
-    files: []
+    files: {
+    	src: []
+    }
   }
 });
 ```
