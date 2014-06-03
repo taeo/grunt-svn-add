@@ -55,6 +55,11 @@ Default value: empty string
 
 Any custom svn options such as `--force` can be run here. Executed after `svn add path/file [svnOpts]`.
 
+#### options.execOpts
+Type: `Object`
+Default value: `false`
+
+See [node child_process exec docs](http://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback)
 
 ### Usage Examples
 
@@ -67,10 +72,29 @@ grunt.initConfig({
       bin: 'svn',
       verbose: false,
       debug: false,
+      svnOpts: '',
       execOpts: {}    
     },
     files: {
     	src: []
+    }
+  }
+});
+```
+
+#### Recursion
+Assumes your initial dir(s) are already in svn.
+`everything/` must be added to svn, will recursively add all files & files.
+`specific/` will add all .css files
+
+```js
+grunt.initConfig({
+  svn_add: {
+    options: {
+      svnOpts: '--force',
+    },
+    files: {
+    	src: ['everything/*', 'specific/*.css']
     }
   }
 });
