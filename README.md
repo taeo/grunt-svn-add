@@ -49,6 +49,12 @@ Default value: `false`
 
 Outputs any errors or notices.
 
+#### options.svnOpts
+Type: `String`
+Default value: empty string
+
+Any custom svn options such as `--force` can be run here. Executed after `svn add path/file [svnOpts]`.
+
 
 ### Usage Examples
 

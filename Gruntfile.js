@@ -30,22 +30,44 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     svn_add: {
+      options: {
+        verbose: true,
+        debug: true,
+        svnOpts: '--force'
+      },
       default_options: {
         options: {
-          verbose: true,
-          debug: true
+          debug: false
         },
         files: { 
-          src: ['test/fixtures/testing']
+          src: ['test/dir1/*.txt']
         }
       },
       custom_options: {
         options: {
-          verbose: true,
-          debug: true
+          debug: false
         },
         files: {
-          src: ['test/fixtures/testing', 'test/fixtures/123']
+          src: ['test/dir1/*']
+        }
+      },
+      not_found: {
+        files: {
+          src: ['test/notexists']
+        }
+      },
+      multiple_files: {
+        options: {
+          debug: false
+        },
+        files: {
+          src: ['test/dir1/*', 'test/dir2/*']
+        }
+      },
+      empty_files: {
+        options: {
+          verbose: false,
+          debug: false
         }
       }
     },

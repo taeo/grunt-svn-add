@@ -19,6 +19,7 @@ module.exports = function(grunt) {
     var exec = require('child_process').exec;
     var options = this.options({
       bin: 'svn',
+      svnOpts: '',
       verbose: false,
       debug: false,
       execOpts: {}
@@ -26,18 +27,34 @@ module.exports = function(grunt) {
 
     var done = this.async();
 
-    this.files.forEach(function(f) {
-      var command = [ options.bin, 'add', f].join(' ');
-      if (options.verbose) {
-        grunt.log.write('SVN add: ' + f + '\n');
+    if (this.files.length === 0) {
+      grunt.log.warn('Skipping, files is not declared.');
+    }
+
+    this.files.forEach(function(filePair) {
+
+      if (filePair.src.length === 0) {
+        grunt.log.warn('Skipping, files src is empty or path does not exist');
       }
-      exec(command, options.execOpts, function (error, stdout) {
-        grunt.log.write(stdout);
-        if (error !== null && options.debug) {
-          grunt.log.error('\n#' + command + "\n" + error);
+
+      filePair.src.forEach(function(f) {
+
+        var command = [ options.bin, 'add', f, options.svnOpts ].join(' ');
+        
+        if (options.verbose) {
+          grunt.log.write('SVN add: ' + f + ' ' + options.svnOpts + '\n');
         }
-        done(true);
+
+        exec(command, options.execOpts, function (error, stdout) {
+          grunt.log.write(stdout);
+          if (error !== null && options.debug) {
+            grunt.log.error('\n#' + command + "\n" + error);
+          }
+          done(true);
+        });
+
       });
+
     });
 
   });
